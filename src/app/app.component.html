@@ -1,0 +1,37 @@
+<h2>Form Group - POC</h2>
+<div style="float: left">
+  <div>
+    <pre>Form Valid: {{ myForm.valid | json }}</pre>
+    <pre>Form Modificado: {{ !myForm.pristine | json }}</pre>
+  </div>
+  <form #myForm="ngForm">
+    <div>
+      <label>Nome:</label>
+      <input type="text" required name="nome" [(ngModel)]="pessoa.nome">
+    </div>
+    <div>
+      <label>Idade:</label>
+      <input type="text"  required name="idade" [(ngModel)]="pessoa.idade">
+    </div>
+    <br>
+    <app-address *ngFor="let address of pessoa?.endereco; let i = index"
+      [index]="i" [(endereco)]="pessoa?.endereco[i]" (remover)="removerEndereco(i, $event)">
+    </app-address>
+  </form>
+  <br>
+  <button type="submit" [disabled]="formDisable()">Submit</button>
+  <button type="button" (click)="adicionarEndereco()">Adicionar Endereço</button>
+  <br>
+</div>
+
+<div style="float: right">
+  <div style="float: left;">
+    <h2>Form Value</h2>
+    <pre>{{ myForm.value | json }}</pre>
+  </div>
+
+  <div style="float: right">
+    <h2>Object Pessoa</h2>
+    <pre>{{ pessoa | json }}</pre>
+  </div>
+</div>
