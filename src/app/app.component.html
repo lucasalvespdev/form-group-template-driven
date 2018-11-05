@@ -15,7 +15,7 @@
     </div>
     <br>
     <app-address *ngFor="let address of pessoa?.endereco; let i = index"
-      [index]="i" [(endereco)]="pessoa?.endereco[i]" (remover)="removerEndereco(i, $event)">
+      [index]="i" [tamanho]="pessoa?.endereco?.length" [(endereco)]="pessoa?.endereco[i]" (remover)="removerEndereco(i, $event)">
     </app-address>
   </form>
   <br>

@@ -20,7 +20,7 @@ import { Pessoa, Endereco } from './app.component';
         <input type="text" name="cidade" required [(ngModel)]="endereco.cidade">
       </li>
       <br>
-      <button type="button" (click)="removerEndereco()">Remover Endereço</button>
+      <button type="button" *ngIf="index == tamanho - 1" (click)="removerEndereco()">Remover Endereço</button>
       </ul>
   `,
   viewProviders: [ { provide: ControlContainer, useExisting: NgForm } ]
@@ -32,6 +32,9 @@ export class AddressComponent  {
 
   @Input()
   index: number;
+
+  @Input()
+  tamanho: number;
 
   @Output()
   remover: EventEmitter<Endereco> = new EventEmitter();
